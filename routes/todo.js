@@ -5,11 +5,14 @@ const User = require("../models/todo");
 // Create User endpoint
 router.post("/users/:username", async (req, res) => {
   const username = req.params.username;
-  console.log;
+  const body = req.body;
+
   if (!username) {
     return res
       .status(404)
       .json({ error: "invalid route, verify the endpoint" });
+  } else if (Array.isArray(body) && body.length > 0) {
+    return res.status(400).json({ error: "body must be an empty array" });
   }
   try {
     // Check if user already exists
