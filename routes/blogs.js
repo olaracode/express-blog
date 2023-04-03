@@ -5,7 +5,7 @@ const { tokenValidate } = require("../middlewares/auth");
 // Get all blogs
 router.get("/", async (req, res) => {
   try {
-    const blogs = await Blog.find({}, "title _id slug");
+    const blogs = await Blog.find({}, "title _id slug tags");
     res.json(blogs);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -14,11 +14,12 @@ router.get("/", async (req, res) => {
 
 // Create a blog
 router.post("/", tokenValidate, async (req, res) => {
+  const loweredTags = req.body.tags.map((tag) => tag.toLowerCase());
   const blog = new Blog({
     title: req.body.title,
     content: req.body.content,
     slug: req.body.title.toLowerCase().split(" ").join("-"),
-    tags: req.body.tags,
+    tags: loweredTags,
   });
 
   try {
