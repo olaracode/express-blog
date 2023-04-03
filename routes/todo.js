@@ -130,7 +130,8 @@ router.delete("/users/:username", async (req, res) => {
     }
 
     // Delete the user and all its todos
-    await user.remove();
+
+    await user.deleteOne();
 
     res.json({ message: "User and all its todos deleted successfully" });
   } catch (err) {

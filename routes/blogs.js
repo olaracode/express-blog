@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Blog = require("../models/blog");
-
+const { tokenValidate } = require("../middlewares/auth");
 // Get all blogs
 router.get("/", async (req, res) => {
   try {
@@ -13,12 +13,12 @@ router.get("/", async (req, res) => {
 });
 
 // Create a blog
-router.post("/", async (req, res) => {
-  console.log("hi");
+router.post("/", tokenValidate, async (req, res) => {
   const blog = new Blog({
     title: req.body.title,
     content: req.body.content,
     slug: req.body.title.toLowerCase().split(" ").join("-"),
+    tags: req.body.tags,
   });
 
   try {

@@ -9,7 +9,7 @@ const indexRouter = require("./routes/index");
 const app = express();
 const blogsRouter = require("./routes/blogs");
 const todoRouter = require("./routes/todo");
-
+const authRouter = require("./routes/auth");
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -31,5 +31,6 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/todo", todoRouter);
 app.use("/blogs", blogsRouter);
+app.use("/auth", authRouter);
 
 module.exports = app;

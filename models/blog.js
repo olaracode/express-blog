@@ -14,6 +14,10 @@ const blogSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  tags: {
+    type: [String],
+    required: true,
+  },
 });
 
 const Blog = mongoose.model("Blog", blogSchema);
