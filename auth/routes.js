@@ -1,8 +1,8 @@
-const User = require("../models/users.js");
+const User = require("./users.js");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const { generateAccessToken } = require("../middlewares/auth.js");
+const { generateAccessToken } = require("../auth/AuthMiddleware.js");
 const saltRounds = 10;
 
 router.post("/users", async (req, res) => {

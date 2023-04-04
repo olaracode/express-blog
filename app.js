@@ -7,9 +7,9 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const indexRouter = require("./routes/index");
 const app = express();
-const blogsRouter = require("./routes/blogs");
+const blogsRouter = require("./blogs/routes");
 const todoRouter = require("./routes/todo");
-const authRouter = require("./routes/auth");
+const authRouter = require("./auth/routes");
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
